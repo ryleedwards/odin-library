@@ -3,6 +3,7 @@
   --kombu-green: #283618ff;
   --cornsilk: #fefae0ff;
   --earth-yellow: #dda15eff;
+  --earth-yellow-press: rgb(255, 136, 0);
   --liver-dogs: #bc6c25ff;
 }
 
@@ -16,10 +17,12 @@
 
 body {
   display: grid;
+  grid-template-rows: auto 100vh;
 }
 
 header {
-  background-color: blue;
+  background-color: var(--dark-olive-green);
+  color: var(--cornsilk);
   grid-row-start: 1;
   grid-row-end: 2;
   display: grid;
@@ -28,12 +31,47 @@ header {
   align-items: center;
 }
 
-#search {
-  flex: 1;
-  width: min(40vw, 400px);
-}
-
 .header.logo {
   padding: 16px;
   font-size: 36px;
+}
+
+#searchForm > div {
+  background-color: var(--cornsilk);
+  border-radius: 8px;
+}
+
+#search {
+  flex: 1;
+  height: 40px;
+  width: min(40vw, 400px);
+  border-radius: 8px;
+  border: none;
+  background-color: var(--cornsilk);
+}
+
+.btn.search {
+  height: 40px;
+  width: 40px;
+  background-color: var(--earth-yellow);
+  border: none;
+  border-radius: 4px;
+}
+.btn.search:hover {
+  color: white;
+  background-color: var(--earth-yellow-press);
+  box-shadow: 1px 0px 5px 0px #0000003b;
+}
+
+.header.user > i {
+  padding: 8px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.sidebar {
+  background-color: var(--dark-olive-green);
 }
