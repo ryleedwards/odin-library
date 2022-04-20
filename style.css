@@ -5,3 +5,27 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  display: grid;
+}
+
+header {
+  background-color: blue;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+#search {
+  flex: 1;
+  width: min(40vw, 400px);
+}
+
+.header.logo {
+  padding: 16px;
+  font-size: 36px;
+}
