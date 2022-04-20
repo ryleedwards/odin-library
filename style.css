@@ -75,3 +75,9 @@ main {
 .sidebar {
   background-color: var(--dark-olive-green);
 }
+
+.book-display {
+  background-image: url("./assets/library.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
