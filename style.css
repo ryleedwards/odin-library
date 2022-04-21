@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+.btn {
+  border: none;
+}
+
 body {
   display: grid;
   grid-template-rows: auto 100vh;
@@ -92,7 +96,7 @@ main {
 .book-display {
   background-color: var(--kombu-green);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 20vw));
 }
 
 .book {
@@ -129,6 +133,8 @@ main {
 
 .boolRead {
   background-color: var(--green);
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 8px;
   grid-area: 4 / 2 / 5 / 2;
   border: none;
