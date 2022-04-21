@@ -11,6 +11,7 @@
   --red-press: rgb(197, 4, 21);
   --light-red: #ff9b85;
   --green: #60d394;
+  --green-press: #49a070;
 
   font-family: "Open Sans", sans-serif;
 }
@@ -97,6 +98,22 @@ main {
 
 .sidebar {
   background-color: var(--dark-olive-green);
+  display: grid;
+}
+
+.btn.add {
+  height: 50px;
+  margin: 0 16px;
+  background-color: var(--earth-yellow-press);
+  font-size: 1vw;
+}
+
+.btn.add:hover {
+  background-color: var(--earth-yellow);
+}
+
+.btn.add > i {
+  margin-right: 8px;
 }
 
 .book-display {
@@ -161,7 +178,7 @@ main {
 }
 
 .btn.boolRead:hover {
-  border: solid 1px black;
+  background-color: var(--green-press);
   font-size: 1.75rem;
 }
 
