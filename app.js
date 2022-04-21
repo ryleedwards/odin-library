@@ -3,8 +3,6 @@ const bookDisplay = document.querySelector(".book-display");
 const bookForm = document.forms["bookForm"];
 const divAddBook = document.querySelector(".addBook");
 
-console.log(bookForm);
-
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     btnHandler(button.classList[1]);
@@ -52,7 +50,10 @@ function btnHandler(btnClass) {
       console.log("boolRead btn hit");
       break;
     case "add":
-      showForm(bookForm);
+      showElement(divAddBook);
+      break;
+    case "cancelForm":
+      showElement(divAddBook);
       break;
   }
 }
@@ -105,10 +106,8 @@ function createBookElement(book) {
   bookDisplay.appendChild(divBook);
 }
 
-function showForm(form) {
-  divAddBook.classList.toggle("invisible");
+function showElement(element) {
+  element.classList.toggle("invisible");
 }
 
 function validateForm(form) {}
-
-validateForm(bookForm);
