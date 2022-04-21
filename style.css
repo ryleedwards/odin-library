@@ -24,6 +24,10 @@
   box-sizing: border-box;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .btn {
   border: none;
   border-radius: 8px;
@@ -201,7 +205,6 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* visibility: hidden; */
 }
 
 .addBook > form {
@@ -247,7 +250,8 @@ label:first-of-type {
   margin-top: 0;
 }
 
-input {
+fieldset > input,
+fieldset > div > input {
   min-width: 100%;
   padding: 0.5em;
   border: solid 1px #999;
@@ -265,9 +269,6 @@ input {
 
 .checks > input {
   height: 1.5rem;
-}
-
-.checks > label {
 }
 
 .btn.formSubmit {

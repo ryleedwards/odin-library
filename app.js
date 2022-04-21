@@ -1,5 +1,9 @@
 const buttons = document.querySelectorAll(".btn");
 const bookDisplay = document.querySelector(".book-display");
+const bookForm = document.forms["bookForm"];
+const divAddBook = document.querySelector(".addBook");
+
+console.log(bookForm);
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -48,7 +52,7 @@ function btnHandler(btnClass) {
       console.log("boolRead btn hit");
       break;
     case "add":
-      console.log("add btn hit");
+      showForm(bookForm);
       break;
   }
 }
@@ -100,3 +104,11 @@ function createBookElement(book) {
   /* Final append of book into display */
   bookDisplay.appendChild(divBook);
 }
+
+function showForm(form) {
+  divAddBook.classList.toggle("invisible");
+}
+
+function validateForm(form) {}
+
+validateForm(bookForm);
