@@ -25,6 +25,10 @@
   border: none;
 }
 
+.btn:hover {
+  box-shadow: 1px 0px 5px 0px #00000075;
+}
+
 body {
   display: grid;
   grid-template-rows: auto 100vh;
@@ -70,7 +74,6 @@ header {
 .btn.search:hover {
   color: white;
   background-color: var(--earth-yellow-press);
-  box-shadow: 1px 0px 5px 0px #0000003b;
 }
 
 .header.user > i {
@@ -97,6 +100,7 @@ main {
   background-color: var(--kombu-green);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 20vw));
+  grid-template-rows: repeat(auto-fill, 282px);
 }
 
 .book {
@@ -131,7 +135,7 @@ main {
   grid-area: 3 / 1 / 4 / 3;
 }
 
-.boolRead {
+.btn.boolRead {
   background-color: var(--green);
   min-width: 50px;
   min-height: 50px;
@@ -140,4 +144,9 @@ main {
   border: none;
   margin: 8px;
   font-size: 1.5rem;
+}
+
+.btn.boolRead:hover {
+  border: solid 1px black;
+  font-size: 1.75rem;
 }
