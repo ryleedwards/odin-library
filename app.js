@@ -47,6 +47,9 @@ function btnHandler(btnClass) {
     case "boolRead":
       console.log("boolRead btn hit");
       break;
+    case "add":
+      console.log("add btn hit");
+      break;
   }
 }
 
@@ -66,6 +69,7 @@ function createBookElement(book) {
   const pYear = document.createElement("p");
   const btnRead = document.createElement("button");
   const iCheck = document.createElement("i");
+  const iUnread = document.createElement("i");
   /* Assign classes to elements */
   divBook.classList += "book";
   pTitle.classList += "title";
@@ -75,17 +79,23 @@ function createBookElement(book) {
   pYear.classList += "year";
   btnRead.classList += "btn boolRead";
   iCheck.classList += "fa-solid fa-check";
+  iUnread.classList += "fa-solid fa-ban";
   /* Populate element text with book details */
   pTitle.innerText = book.title;
   pAuthor.innerText = book.author;
   pYear.innerText = book.year;
-  //placeholder for btnRead logic.
+
+  if (book.boolRead) btnRead.appendChild(iCheck);
+  else {
+    btnRead.appendChild(iUnread);
+    btnRead.classList += " unread";
+  }
+
   divBook.appendChild(pTitle);
   btnRemove.appendChild(iXMark);
   divBook.appendChild(btnRemove);
   divBook.appendChild(pAuthor);
   divBook.appendChild(pYear);
-  btnRead.appendChild(iCheck);
   divBook.appendChild(btnRead);
   /* Final append of book into display */
   bookDisplay.appendChild(divBook);

@@ -177,8 +177,16 @@ main {
   font-size: 1.5rem;
 }
 
+.btn.boolRead.unread {
+  background-color: var(--light-red);
+}
+
 .btn.boolRead:hover {
   background-color: var(--green-press);
+  font-size: 1.75rem;
+}
+.btn.boolRead.unread:hover {
+  background-color: var(--red-press);
   font-size: 1.75rem;
 }
 
