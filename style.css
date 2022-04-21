@@ -7,7 +7,9 @@
   --earth-yellow: #dda15eff;
   --earth-yellow-press: rgb(255, 136, 0);
   --liver-dogs: #bc6c25ff;
-  --red: #ff9b85;
+  --red: rgb(217, 4, 41);
+  --red-press: rgb(197, 4, 21);
+  --light-red: #ff9b85;
   --green: #60d394;
 
   font-family: "Open Sans", sans-serif;
@@ -23,6 +25,7 @@
 
 .btn {
   border: none;
+  border-radius: 8px;
 }
 
 .btn:hover {
@@ -120,6 +123,16 @@ main {
   border-top-right-radius: 8px;
   padding: 8px;
   font-size: 1.5rem;
+}
+
+.btn.remove {
+  background-color: var(--red);
+  grid-area: 1 / 2 / 2 / 3;
+  margin: 8px;
+}
+
+.btn.remove:hover {
+  background-color: var(--red-press);
 }
 
 .author,
