@@ -139,6 +139,7 @@ main {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 8px;
+  font-weight: bold;
 }
 
 .btn.remove {
@@ -200,17 +201,14 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  visibility: hidden;
+  /* visibility: hidden; */
 }
 
 .addBook > form {
   position: relative;
   background-color: var(--cornsilk);
-  padding: 100px;
-}
-
-.addBook > form > ul {
-  list-style-type: none;
+  padding: 5vh 5vh;
+  border-radius: 8px;
 }
 
 .btn.cancelForm {
@@ -220,4 +218,63 @@ main {
   height: 36px;
   width: 36px;
   background-color: var(--red);
+}
+
+fieldset {
+  margin: 2em 0;
+  padding: 1em 2em;
+  border: solid 1px #ccc;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+legend {
+  font-size: 1.25em;
+  padding: 0 0.25em;
+  color: #999;
+}
+
+label {
+  display: block;
+  margin-top: 1em;
+}
+
+.checks label {
+  margin-top: 0;
+}
+
+label:first-of-type {
+  margin-top: 0;
+}
+
+input {
+  min-width: 100%;
+  padding: 0.5em;
+  border: solid 1px #999;
+  border-radius: 8px;
+}
+
+.checks {
+  margin: 16px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.checks > input {
+  height: 1.5rem;
+}
+
+.checks > label {
+}
+
+.btn.formSubmit {
+  background-color: var(--earth-yellow);
+  font-weight: bold;
+}
+
+.btn.formSubmit:hover {
+  background-color: var(--earth-yellow-press);
 }
