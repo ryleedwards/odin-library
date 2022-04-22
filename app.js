@@ -153,8 +153,6 @@ function validateFormInput(inputType, input) {
   return messages;
 }
 
-// ---------------------------------------------------
-
 function ingestForm(form) {
   let title = form["title"].value;
   let author = form["author"].value;
