@@ -9,6 +9,12 @@ buttons.forEach((button) => {
   });
 });
 
+bookForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // prevents the form from auto-submitting
+  let book = ingestForm(bookForm);
+  debugger;
+});
+
 // Instantiate array to hold book objects
 let myLibrary = [];
 
@@ -110,4 +116,17 @@ function showElement(element) {
   element.classList.toggle("invisible");
 }
 
-function validateForm(form) {}
+function validateForm(form) {
+  console.log(form["title"].value);
+}
+
+// ---------------------------------------------------
+
+function ingestForm(form) {
+  let title = form["title"].value;
+  let author = form["author"].value;
+  let publishYear = form["publishYear"].value;
+  let hasRead = form["hasRead"].checked;
+
+  return new Book(title, author, publishYear, hasRead);
+}
