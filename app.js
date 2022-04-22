@@ -11,9 +11,9 @@ buttons.forEach((button) => {
 });
 
 bookForm.addEventListener("submit", function (event) {
+  event.preventDefault();
   let errors = validateForm(bookForm);
   if (errors.length > 0) {
-    event.preventDefault();
     errors.forEach((error) => {
       if (error.type == "year") errorYear.innerText = error.message;
     });
@@ -21,6 +21,8 @@ bookForm.addEventListener("submit", function (event) {
   if (errors.length == 0) {
     let book = ingestForm(bookForm);
     createBookElement(book);
+    myLibrary.push(book);
+    showElement(divAddBook);
   }
 });
 
