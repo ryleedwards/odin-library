@@ -2,6 +2,7 @@ const buttons = document.querySelectorAll(".btn");
 const bookDisplay = document.querySelector(".book-display");
 const bookForm = document.forms["bookForm"];
 const divAddBook = document.querySelector(".addBook");
+const errorYear = document.querySelector(".formError.year");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -10,9 +11,17 @@ buttons.forEach((button) => {
 });
 
 bookForm.addEventListener("submit", function (event) {
-  event.preventDefault(); // prevents the form from auto-submitting
-  let book = ingestForm(bookForm);
-  debugger;
+  let errors = validateForm(bookForm);
+  if (errors.length > 0) {
+    event.preventDefault();
+    errors.forEach((error) => {
+      if (error.type == "year") errorYear.innerText = error.message;
+    });
+  }
+  if (errors.length == 0) {
+    let book = ingestForm(bookForm);
+    createBookElement(book);
+  }
 });
 
 // Instantiate array to hold book objects
@@ -29,6 +38,12 @@ function Book(title, author, year, boolRead) {
 Book.prototype.toggleRead = function () {
   this.boolRead = !this.boolRead;
 };
+
+// Error constructor
+function Error(type, message) {
+  this.type = type;
+  this.message = message;
+}
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -117,7 +132,23 @@ function showElement(element) {
 }
 
 function validateForm(form) {
-  console.log(form["title"].value);
+  let errors = validateFormInput("year", form["publishYear"].value);
+  return errors;
+}
+
+function validateFormInput(inputType, input) {
+  let messages = [];
+  // Begin handling publishYear input
+  if (inputType == "year") {
+    if (input == "" || input == null) {
+      messages.push(new Error("year", "Please enter a valid year"));
+    }
+    if (!Number.isInteger(parseInt(input))) {
+      messages.push(new Error("year", "Please enter a valid year"));
+    }
+  }
+  // End handling publishYear input
+  return messages;
 }
 
 // ---------------------------------------------------
