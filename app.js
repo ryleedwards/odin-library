@@ -102,10 +102,16 @@ function createBookElement(book) {
   divBook.classList += "book";
   pTitle.classList += "title";
   btnRemove.classList += "btn remove";
+  btnRemove.addEventListener("click", () => {
+    btnHandler(btnRemove.classList[1]);
+  });
   iXMark.classList += "fa-solid fa-xmark";
   pAuthor.classList += "author";
   pYear.classList += "year";
   btnRead.classList += "btn boolRead";
+  btnRead.addEventListener("click", () => {
+    btnHandler(btnRead.classList[1]);
+  });
   iCheck.classList += "fa-solid fa-check";
   iUnread.classList += "fa-solid fa-ban";
   /* Populate element text with book details */
@@ -160,4 +166,10 @@ function ingestForm(form) {
   let hasRead = form["hasRead"].checked;
 
   return new Book(title, author, publishYear, hasRead);
+}
+
+function boolReadHover(button, book) {
+  button.removeChild(button.firstChild);
+  if (book.boolRead) {
+  }
 }
