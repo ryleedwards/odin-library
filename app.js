@@ -48,11 +48,6 @@ function Error(type, message) {
   this.message = message;
 }
 
-function addBookToLibrary(book) {
-  book.index = myLibrary.length;
-  myLibrary.push(book);
-}
-
 let theHobbit = new Book("The Hobbit", "J.R.R", 1958, false);
 let vampire = new Book("Interview with the Vampire", "Anne Rice", 1976, false);
 let it = new Book("It", "Stephen King", 1986, true);
@@ -62,6 +57,11 @@ addBookToLibrary(vampire);
 addBookToLibrary(it);
 
 refreshDisplay();
+
+function addBookToLibrary(book) {
+  book.index = myLibrary.length;
+  myLibrary.push(book);
+}
 
 function btnHandler(btnClass) {
   switch (btnClass) {
@@ -105,11 +105,12 @@ function createBookElement(book) {
   divBook.classList += "book";
   pTitle.classList += "title";
   btnRemove.classList += "btn remove";
-  btnRemove.addEventListener("click", () => {
-    btnHandler(btnRemove.classList[1]);
+
+  btnRemove.addEventListener("click", (e) => {
+    removeBook(e.target.parentElement.dataset.index);
   });
 
-  iXMark.classList += "fa-solid fa-xmark";
+  iXMark.classList += "fa-solid fa-xmark insensitive";
   pAuthor.classList += "author";
   pYear.classList += "year";
   btnRead.classList += "btn boolRead";
@@ -147,7 +148,11 @@ function showElement(element) {
 }
 
 function validateForm(form) {
+  // Validate year input
   let errors = validateFormInput("year", form["publishYear"].value);
+
+  // Future logic for any additional input validation...
+
   return errors;
 }
 
@@ -174,6 +179,14 @@ function ingestForm(form) {
 
   return new Book(title, author, publishYear, hasRead);
 }
+
+/* 
+   addHoverListener is used to add hover styling to boolRead buttons 
+   by changing the button to indicate the future state of the button 
+   in the event of a click. e.g. hover over a checked button, button
+   then becomes red and unchecked. Hover out, and it will return to 
+   its checkmark and green color 
+*/
 
 function addHoverListener(button) {
   // mouse enter
@@ -217,8 +230,7 @@ function addHoverListener(button) {
   });
 }
 
-function boolReadHover(button, book) {
-  button.removeChild(button.firstChild);
-  if (book.boolRead) {
-  }
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  bookDisplay.removeChild(bookDisplay.children[index]);
 }
