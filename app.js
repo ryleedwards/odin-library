@@ -21,7 +21,7 @@ bookForm.addEventListener("submit", function (event) {
   if (errors.length == 0) {
     let book = ingestForm(bookForm);
     createBookElement(book);
-    myLibrary.push(book);
+    addBookToLibrary(book);
     showElement(divAddBook);
   }
 });
@@ -31,6 +31,7 @@ let myLibrary = [];
 
 // Book constructor
 function Book(title, author, year, boolRead) {
+  this.index = "";
   this.title = title;
   this.author = author;
   this.year = year;
@@ -48,6 +49,7 @@ function Error(type, message) {
 }
 
 function addBookToLibrary(book) {
+  book.index = myLibrary.length;
   myLibrary.push(book);
 }
 
@@ -90,6 +92,7 @@ function refreshDisplay() {
 function createBookElement(book) {
   /* Create document elements that comprise a book card */
   const divBook = document.createElement("div");
+  divBook.dataset.index = book.index;
   const pTitle = document.createElement("p");
   const btnRemove = document.createElement("button");
   const iXMark = document.createElement("i");
@@ -105,6 +108,7 @@ function createBookElement(book) {
   btnRemove.addEventListener("click", () => {
     btnHandler(btnRemove.classList[1]);
   });
+
   iXMark.classList += "fa-solid fa-xmark";
   pAuthor.classList += "author";
   pYear.classList += "year";
@@ -112,15 +116,18 @@ function createBookElement(book) {
   btnRead.addEventListener("click", () => {
     btnHandler(btnRead.classList[1]);
   });
-  iCheck.classList += "fa-solid fa-check";
-  iUnread.classList += "fa-solid fa-ban";
+  addHoverListener(btnRead);
+  iCheck.classList += "fa-solid fa-check insensitive";
+  iUnread.classList += "fa-solid fa-ban insensitive";
   /* Populate element text with book details */
   pTitle.innerText = book.title;
   pAuthor.innerText = book.author;
   pYear.innerText = book.year;
 
-  if (book.boolRead) btnRead.appendChild(iCheck);
-  else {
+  if (book.boolRead) {
+    btnRead.classList += " read";
+    btnRead.appendChild(iCheck);
+  } else {
     btnRead.appendChild(iUnread);
     btnRead.classList += " unread";
   }
@@ -166,6 +173,48 @@ function ingestForm(form) {
   let hasRead = form["hasRead"].checked;
 
   return new Book(title, author, publishYear, hasRead);
+}
+
+function addHoverListener(button) {
+  // mouse enter
+  button.addEventListener("mouseover", (e) => {
+    e.stopPropagation();
+    const btn = e.target;
+    btn.removeChild(btn.firstChild);
+    let divBook = btn.parentElement;
+    if (myLibrary[divBook.dataset.index].boolRead) {
+      const iUnread = document.createElement("i");
+      iUnread.classList += "fa-solid fa-ban  insensitive";
+      btn.appendChild(iUnread);
+      btn.classList.toggle("unread");
+    }
+    if (!myLibrary[divBook.dataset.index].boolRead) {
+      const iCheck = document.createElement("i");
+      iCheck.classList += "fa-solid fa-check insensitive";
+      btn.appendChild(iCheck);
+      btn.classList.toggle("unread");
+    }
+  });
+
+  // mouse leave
+  button.addEventListener("mouseout", (e) => {
+    console.log(`event triggered: ${e.target}`);
+    const btn = e.target;
+    btn.removeChild(btn.firstChild);
+    let divBook = btn.parentElement;
+    if (!myLibrary[divBook.dataset.index].boolRead) {
+      const iUnread = document.createElement("i");
+      iUnread.classList += "fa-solid fa-ban";
+      btn.appendChild(iUnread);
+      btn.classList.toggle("unread");
+    }
+    if (myLibrary[divBook.dataset.index].boolRead) {
+      const iCheck = document.createElement("i");
+      iCheck.classList += "fa-solid fa-check";
+      btn.appendChild(iCheck);
+      btn.classList.toggle("unread");
+    }
+  });
 }
 
 function boolReadHover(button, book) {

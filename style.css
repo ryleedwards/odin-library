@@ -187,6 +187,10 @@ main {
   background-color: var(--light-red);
 }
 
+.insensitive {
+  pointer-events: none;
+}
+
 .btn.boolRead:hover {
   background-color: var(--green-press);
   font-size: 1.75rem;
