@@ -20,8 +20,8 @@ bookForm.addEventListener("submit", function (event) {
   }
   if (errors.length == 0) {
     let book = ingestForm(bookForm);
-    createBookElement(book);
     addBookToLibrary(book);
+    createBookElement(book);
     showElement(divAddBook);
   }
 });
@@ -67,12 +67,6 @@ function btnHandler(btnClass) {
   switch (btnClass) {
     case "search":
       console.log("search btn hit");
-      break;
-    case "remove":
-      console.log("remove btn hit");
-      break;
-    case "boolRead":
-      console.log("boolRead btn hit");
       break;
     case "add":
       showElement(divAddBook);
@@ -231,6 +225,12 @@ function addHoverListener(button) {
 }
 
 function removeBook(index) {
+  debugger;
   myLibrary.splice(index, 1);
   bookDisplay.removeChild(bookDisplay.children[index]);
+
+  for (i = 0; i < myLibrary.length; i++) {
+    myLibrary[i].index = i;
+    bookDisplay.children[i].dataset.index = i;
+  }
 }
