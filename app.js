@@ -108,8 +108,8 @@ function createBookElement(book) {
   pAuthor.classList += "author";
   pYear.classList += "year";
   btnRead.classList += "btn boolRead";
-  btnRead.addEventListener("click", () => {
-    btnHandler(btnRead.classList[1]);
+  btnRead.addEventListener("click", (e) => {
+    changeReadStatus(e);
   });
   addHoverListener(btnRead);
   iCheck.classList += "fa-solid fa-check insensitive";
@@ -233,4 +233,10 @@ function removeBook(index) {
     myLibrary[i].index = i;
     bookDisplay.children[i].dataset.index = i;
   }
+}
+
+function changeReadStatus(e) {
+  divIndex = e.target.parentElement.dataset.index;
+  myLibrary[divIndex].toggleRead();
+  e.target.classList.toggle("unread ");
 }
